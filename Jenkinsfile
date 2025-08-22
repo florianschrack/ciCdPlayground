@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'Version', defaultValue: '1.0.0', description: 'Please provide version number.')
+    }
     tools {
         nodejs 'yarn'
     }
@@ -8,7 +11,7 @@ pipeline {
         stage('prepare') {
             steps {
                 script {
-                    currentBuild.description = 'Description'
+                    currentBuild.description = "version ${params.Version}"
                     currentBuild.displayName = 'displayName'
                 }
             }
