@@ -5,6 +5,15 @@ pipeline {
     }
 
     stages {
+        stage('prepare') {
+            steps {
+                script {
+                    currentBuild.description = 'Description'
+                    currentBuild.displayName = 'displayName'
+                }
+            }
+        }
+
         stage('install') {
             steps {
                 sh 'yarn'
