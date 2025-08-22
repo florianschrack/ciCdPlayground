@@ -32,8 +32,10 @@ pipeline {
             steps {
                 sh 'yarn test:e2e'
             }
-            always {
-                junit 'reports/cypress-junit.xml'
+            post{
+                always {
+                    junit 'reports/cypress-junit.xml'
+                }
             }
         }
 
