@@ -1,10 +1,22 @@
 pipeline {
     agent any
+    parameters {
+      string(name: 'Version', defaultValue: '1.0.0', description: 'Please provide version number.')
+    }
     tools {
         nodejs 'yarn'
     }
 
     stages {
+        stage('preparation') {
+          steps {
+            script {
+              currentBuild.displayName = 'displayName'
+              currentBuild.description = "${params.Version}"
+            }
+          }
+        }
+        
         stage('install') {
             steps {
                 sh 'yarn'
